@@ -24,7 +24,9 @@ class KafkaTelemetryProducer:
         if topic_name not in metadata.topics:
             logger.info(f"Topic {topic_name} does not exist. Creating...")
             new_topic = NewTopic(
-                topic_name, num_partitions=partitions, replication_factor=replication_factor
+                topic_name, 
+                num_partitions=partitions, 
+                replication_factor=replication_factor
             )
             fs = self.admin.create_topics([new_topic])
             for topic, f in fs.items():
