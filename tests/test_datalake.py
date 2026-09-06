@@ -57,8 +57,10 @@ def test_parquet_writing_and_duckdb_reading():
         assert res[0] == 2
         
         # Query partition column extraction
-        res_dates = duck.query("SELECT event_date FROM match_events ORDER BY event_date").fetchall()
-        assert res_dates[0][0] == "2026-09-06"
-        assert res_dates[1][0] == "2026-09-07"
+        res_dates = duck.query(
+            "SELECT event_date FROM match_events ORDER BY event_date"
+        ).fetchall()
+        assert str(res_dates[0][0]) == "2026-09-06"
+        assert str(res_dates[1][0]) == "2026-09-07"
         
         duck.close()

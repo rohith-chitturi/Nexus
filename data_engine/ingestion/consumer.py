@@ -29,12 +29,16 @@ class KafkaTelemetryConsumer:
             }
         )
 
-    def consume_batch(self, topic: str, batch_size: int = 1000, timeout_ms: int = 5000) -> List[MatchEvent]:
+    def consume_batch(
+        self, topic: str, batch_size: int = 1000, timeout_ms: int = 5000
+    ) -> List[MatchEvent]:
         self.consumer.subscribe([topic])
         events = []
         
         # Pull messages
-        messages = self.consumer.consume(num_messages=batch_size, timeout=timeout_ms / 1000.0)
+        messages = self.consumer.consume(
+            num_messages=batch_size, timeout=timeout_ms / 1000.0
+        )
         
         for msg in messages:
             if msg.error():

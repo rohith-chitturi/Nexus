@@ -18,7 +18,10 @@ class DuckDBClient:
         parquet_glob e.g.: 'datasets/raw/match_events/**/*.parquet'
         """
         try:
-            query = f"CREATE OR REPLACE VIEW {view_name} AS SELECT * FROM read_parquet('{parquet_glob}', hive_partitioning=true)"
+            query = (
+                f"CREATE OR REPLACE VIEW {view_name} "
+                f"AS SELECT * FROM read_parquet('{parquet_glob}', hive_partitioning=true)"
+            )
             self.conn.execute(query)
             logger.info(f"Registered view {view_name} for {parquet_glob}")
         except Exception as e:
