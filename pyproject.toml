@@ -39,3 +39,15 @@ addopts = "-ra -q"
 testpaths = [
     "tests",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = [
+    "apps",
+    "agents",
+    "data_engine",
+    "lineage",
+    "evolution",
+    "vector",
+    "sandbox",
+    "evaluation",
+]
