@@ -1,7 +1,8 @@
 from typing import Dict, List, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
+from evolution.semantic_models import SemanticContract
 from evolution.snapshot import ColumnSchema, ColumnStatistics
 
 
@@ -20,3 +21,4 @@ class DataConstitution(BaseModel):
     expected_schema: List[ColumnSchema]
     baseline_statistics: Dict[str, ColumnStatistics]
     quality_constraints: Dict[str, QualityConstraints]
+    semantic_contracts: Dict[str, SemanticContract] = Field(default_factory=dict)
